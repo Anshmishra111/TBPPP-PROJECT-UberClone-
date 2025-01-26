@@ -121,3 +121,72 @@ Authenticate an existing user in the system.
 ### Validation Rules
 - Email: Must be a valid email format
 - Password: Minimum 6 characters
+
+## Get User Profile
+Get the profile information of the authenticated user.
+
+### HTTP METHOD
+'GET'
+
+### Endpoint
+'/users/profile'
+
+### Headers
+- Authorization: Bearer {jwt_token_string}
+
+### Response
+
+#### Success Response
+- **Status Code**: 200 (OK)
+- **Response Body**:
+```json
+{
+    "fullname": {
+        "firstname": "string",
+        "lastname": "string"
+    },
+    "email": "string",
+    "_id": "string"
+}
+```
+
+#### Error Responses
+- **Status Code**: 401 (Unauthorized)
+  - When no token is provided or token is invalid
+```json
+{
+    "message": "Unauthorized"
+}
+```
+
+## Logout User
+Logout the currently authenticated user and blacklist the token provided in cookie or parser.
+
+### HTTP METHOD
+'GET'
+
+### Endpoint
+'/users/logout'
+
+### Headers
+- Authorization: Bearer {jwt_token_string}
+
+### Response
+
+#### Success Response
+- **Status Code**: 200 (OK)
+- **Response Body**:
+```json
+{
+    "message": "Logged out successfully"
+}
+```
+
+#### Error Responses
+- **Status Code**: 401 (Unauthorized)
+  - When no token is provided or token is invalid
+```json
+{
+    "message": "Unauthorized"
+}
+```
